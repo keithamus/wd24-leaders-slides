@@ -2,20 +2,20 @@
 // overridden by the super-theme
 
 // Background of the presentation
-$backgroundColor: #2b2b2b;
+$backgroundColor: rgb(33, 37, 41);
 
 // Primary/body text
-$mainFont: 'Lato', sans-serif;
-$mainFontSize: 40px;
-$mainColor: #eee;
+$mainFont: 'Inter', sans-serif;
+$mainFontSize: 42px;
+$mainColor: rgb(206, 212, 218);
 
 // Vertical spacing between blocks of text
 $blockMargin: 20px;
 
 // Headings
 $headingMargin: 0 0 $blockMargin 0;
-$headingFont: 'League Gothic', Impact, sans-serif;
-$headingColor: #eee;
+$headingFont: 'Inter', Impact, sans-serif;
+$headingColor: $mainColor;
 $headingLineHeight: 1.2;
 $headingLetterSpacing: normal;
 $headingTextTransform: uppercase;
@@ -35,7 +35,7 @@ $linkColor: #13DAEC;
 $linkColorHover: lighten( $linkColor, 20% );
 
 // Text selection
-$selectionBackgroundColor: #FF5E99;
+$selectionBackgroundColor: rgb(38, 188, 237);
 $selectionColor: #fff;
 
 // Colors used for UI elements that are overlaid on top of
