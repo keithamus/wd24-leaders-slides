@@ -12,21 +12,21 @@ section.has-light-background, section.has-light-background h1, section.has-light
  * GLOBAL STYLES
  *********************************************/
 :root {
-  --r-background-color: #191919;
-  --r-main-font: Source Sans Pro, Helvetica, sans-serif;
-  --r-main-font-size: 42px;
-  --r-main-color: #fff;
+  --r-background-color: rgb(33, 37, 41);
+  --r-main-font: Inter, Helvetica, sans-serif;
+  --r-main-font-size: 80px;
+  --r-main-color: rgb(206, 212, 218);
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
-  --r-heading-font: Source Sans Pro, Helvetica, sans-serif;
-  --r-heading-color: #fff;
+  --r-heading-font: Inter, Helvetica, sans-serif;
+  --r-heading-color: rgb(206, 212, 218);
   --r-heading-line-height: 1.2;
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
   --r-heading-text-shadow: none;
-  --r-heading-font-weight: 600;
+  --r-heading-font-weight: 900;
   --r-heading1-text-shadow: none;
-  --r-heading1-size: 2.5em;
+  --r-heading1-size: 2em;
   --r-heading2-size: 1.6em;
   --r-heading3-size: 1.3em;
   --r-heading4-size: 1em;
@@ -41,7 +41,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 .reveal-viewport {
-  background: #191919;
+  background: rgb(33, 37, 41);
   background-color: var(--r-background-color);
 }
 
