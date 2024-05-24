@@ -14,7 +14,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 :root {
   --r-background-color: rgb(33, 37, 41);
   --r-main-font: Inter, Helvetica, sans-serif;
-  --r-main-font-size: 80px;
+  --r-main-font-size: 40px;
   --r-main-color: rgb(206, 212, 218);
   --r-block-margin: 20px;
   --r-heading-margin: 0 0 20px 0;
@@ -24,7 +24,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
   --r-heading-text-shadow: none;
-  --r-heading-font-weight: 900;
+  --r-heading-font-weight: 600;
   --r-heading1-text-shadow: none;
   --r-heading1-size: 2em;
   --r-heading2-size: 1.6em;
@@ -356,4 +356,241 @@ section.has-light-background, section.has-light-background h1, section.has-light
   .backgrounds {
     background-color: var(--r-background-color);
   }
+}
+.qr {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-decoration: none;
+  font-family: American Typewriter, sans-serif;
+  letter-spacing: 2px;
+  font-size: 1.75rem;
+  font-weight: lighter;
+  align-items: center;
+}
+
+qr-code {
+  aspect-ratio: 1/1;
+  width: calc(12rem * var(--slide-scale));
+  --qrcode-dark-color: #ced4da;
+  --qrcode-light-color: #212529;
+  --qrcode-corner-color: #ced4da;
+  --qrcode-resize: true;
+}
+
+:root {
+  --r-heading-text-transform: none;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides .text {
+  margin-top: 10%;
+}
+
+.reveal pre {
+  font-size: 1.5rem;
+}
+
+.baseline-high, .baseline-new {
+  position: fixed;
+  top: 2%;
+  display: none;
+  width: var(--slide-width);
+  left: calc(50% - var(--slide-width) / 2);
+}
+
+body:has(.present[baseline=high]) .baseline-high {
+  display: block;
+}
+
+body:has(.present[baseline="2022"]) .baseline-new[y="2022"] {
+  display: block;
+}
+
+body:has(.present[baseline="2023"]) .baseline-new[y="2023"] {
+  display: block;
+}
+
+body:has(.present[baseline="2024"]) .baseline-new[y="2024"] {
+  display: block;
+}
+
+.rechart text {
+  fill: white !important;
+}
+.rechart [fill="#ed387a"] {
+  fill: #5eba71;
+}
+
+.ct-chart-pie {
+  width: 610px;
+  height: 500px;
+  margin: auto;
+}
+
+.ct-label {
+  font-size: 1.5rem;
+}
+
+.ct-series-a .ct-slice-pie {
+  fill: #d70206;
+}
+.ct-series-b .ct-slice-pie {
+  fill: #f05b4f;
+}
+.ct-series-c .ct-slice-pie {
+  fill: #f4c63d;
+}
+.ct-series-d .ct-slice-pie {
+  fill: #d17905;
+}
+.ct-series-e .ct-slice-pie {
+  fill: #453d3f;
+}
+.ct-series-f .ct-slice-pie {
+  fill: #59922b;
+}
+
+.krauset-table {
+  font-size: 0.8rem;
+}
+.krauset-table:not(.compiled) th:nth-child(8), .krauset-table:not(.compiled) th:nth-child(11) {
+  background: green;
+}
+.krauset-table.compiled th:nth-child(3), .krauset-table.compiled th:nth-child(4), .krauset-table.compiled th:nth-child(6), .krauset-table.compiled th:nth-child(7), .krauset-table.compiled th:nth-child(8), .krauset-table.compiled th:nth-child(11), .krauset-table.compiled th:nth-child(12), .krauset-table.compiled th:nth-child(13) {
+  background: green;
+}
+
+.lol {
+  position: absolute;
+  color: salmon;
+  font-size: 2rem;
+  left: 30%;
+  rotate: -5deg;
+}
+.lol li {
+  list-style: none;
+}
+
+progress {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 290486px;
+  display: block;
+  height: 1rem;
+  overflow: hidden;
+  padding: 0;
+  margin: 0 auto;
+  width: 75%;
+  margin-bottom: 1.5rem;
+}
+
+progress.is-primary::-moz-progress-bar {
+  background-color: #00d1b2;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #dbdbdb;
+}
+
+progress::-webkit-progress-value {
+  background-color: #4a4a4a;
+}
+
+progress::-moz-progress-bar {
+  background-color: #4a4a4a;
+}
+
+progress.is-white::-webkit-progress-value {
+  background-color: #fff;
+}
+
+progress.is-white::-moz-progress-bar {
+  background-color: #fff;
+}
+
+progress.is-black::-webkit-progress-value {
+  background-color: #0a0a0a;
+}
+
+progress.is-black::-moz-progress-bar {
+  background-color: #0a0a0a;
+}
+
+progress.is-light::-webkit-progress-value {
+  background-color: #f5f5f5;
+}
+
+progress.is-light::-moz-progress-bar {
+  background-color: #f5f5f5;
+}
+
+progress.is-dark::-webkit-progress-value {
+  background-color: #363636;
+}
+
+progress.is-dark::-moz-progress-bar {
+  background-color: #363636;
+}
+
+progress.is-primary::-webkit-progress-value {
+  background-color: #00d1b2;
+}
+
+progress.is-primary::-moz-progress-bar {
+  background-color: #00d1b2;
+}
+
+progress.is-info::-webkit-progress-value {
+  background-color: #3273dc;
+}
+
+progress.is-info::-moz-progress-bar {
+  background-color: #3273dc;
+}
+
+progress.is-success::-webkit-progress-value {
+  background-color: #23d160;
+}
+
+progress.is-success::-moz-progress-bar {
+  background-color: #23d160;
+}
+
+progress.is-warning::-webkit-progress-value {
+  background-color: #ffdd57;
+}
+
+progress.is-warning::-moz-progress-bar {
+  background-color: #ffdd57;
+}
+
+progress.is-danger::-webkit-progress-value {
+  background-color: #ff3860;
+}
+
+progress.is-danger::-moz-progress-bar {
+  background-color: #ff3860;
+}
+
+progress.is-small {
+  height: 0.75rem;
+}
+
+progress.is-medium {
+  height: 1.25rem;
+}
+
+progress.is-large {
+  height: 1.5rem;
 }

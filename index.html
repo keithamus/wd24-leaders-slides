@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>A (probably not) unbiased critique of Web Components, among other things</title>
+		<title>Web Architectures today, and Tomorrow</title>
 
 		<link rel="stylesheet" href="dist/reset.css">
 		<link rel="stylesheet" href="dist/reveal.css">
@@ -14,23 +14,637 @@
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<body>
+    <a class="qr" href="https://k9l.io/wd24l">
+      <qr-code style="z-index:999999">https://k9l.io/wd24l</qr-code>
+      <span>k9l.io/wd24l</span>
+    </a>
+    <img class="baseline baseline-high" src="./baseline-high.png">
+    <img class="baseline baseline-new" y="2022" src="./baseline-2022.png">
+    <img class="baseline baseline-new" y="2023" src="./baseline-2023.png">
+    <img class="baseline baseline-new" y="2024" src="./baseline-2024.png">
+
 		<div class="reveal">
 			<div class="slides">
 
-
-				<section>
-          <h1>A (probably not) unbiased critique of Web Components, among other things</h1>
-
+        <!-- 0 -->
+        <section data-qr="https://k9l.io/wd24l">
+          <h1>Web Architectures</h1>
+          <h1>Today</h1>
+          <h1>&amp; Tomorrow</h1>
           <aside class="notes">
-            Test
+            This is a narative of the last few decades from one UI engineers view, one set of opinions. Not those of my
+            employer.
           </aside>
         </section>
 
+        <!-- 1 -->
+        <section data-qr="https://k9l.io/wd24l">
+          <h1>Software Crisis</h1>
+          <aside class="notes">
+            In 1968, NATO hosted a software development conference to address what was deemed a Software Crisis at the
+            time. Increasing complexity of hardware meant that software projects were often overbudget, over time,
+            inneficient to build, maintain and run. Sound familiar? They gathered prominent software developers of the
+            time, such as Edsgar Dijkstra and Doug Mcillroy to present on ways to solve these issues.
+          </aside>
+        </section>
 
+        <!-- 2 -->
+				<section data-qr="https://k9l.io/nato1968">
+          <div style="display:flex;flex-direction:column;align-items:center">
+            <h4>MASS PRODUCED SOFTWARE COMPONENTS</h4>
+            <h4>BY M.D. MCILROY</h4>
+            <img src="./software-components-lecture.jpg">
+            <small style="font-size:1rem">Source http://homepages.cs.ncl.ac.uk/brian.randell/NATO/N1968/index.html</small>
+          </div>
+          <aside class="notes">
+            Mcillroy presented a talk on Mass produced software components, proposing that, much like hardware, the
+            software industry should be able to produce reusable parts to build software cheaper, faster, and easier.
+            <br><br>
+            Or as mcilroy put it software engineers could "consult a catalogue offering routines in varying degrees of
+            precision, robust- ness, time-space performance, and generality".
+          </aside>
+        </section>
 
-				<section>Slide 2</section>
+        <!-- 3 -->
+				<section>
+          <h1>How does this apply today?</h1>
+          <aside class="notes">
+            I don't think Mcilroy was talking about components in the same sense we do today, I think he was talking
+            about libraries, and decomposable systems. Composable primitives. Mcilroy worked at Bell Labs on the unix
+            operating system, which embodied these ideas. 
+            <br><br>
+            But why am I talking about a conf talk that happened over 50 years ago?
+            <br><br>
+            Well these are the same ideas that exist throughout the industry, including UI and the Web. 
+            Mcillroy's talk focused around the growing complexity of hardware, moving from vaccum tubes to mainframes,
+            but we're experiencing the same increase in complexity of hardware as more software development pivots from
+            desktop to mobile, new user interface paradigms, new input devices like touch, vision.
+            <br><br>
+            The problem is we're putting so much energy into building these experiences over and over, I think this is
+            down to a failure of the web platform.
+          </aside>
+        </section>
 
+        <!-- 4 -->
+				<section>
+          <h1>The Web Platform</h1>
+          <aside class="notes">
+            In terms of a decomposable system, the Web Platform has historically struggled. It gives us the bedrock for
+            which to place our libraries and components atop, but it hasn't always composed very well, and so we
+            essentially ship our own web platforms on top of the web platform.
+            <br><br>
+            The Web at its inception in 1990, it was just for documents. The system wasn't designed for apps, just pages.
+            <br><br>
+            And so the history goes; the 2000s however, there was a big push to create richer documents and applications 
+            using the Web. The W3C was excited about this new XML format they'd invented but meanwhile browser companies
+            like Opera, Apple, Mozilla and even Google wanted to focus on innovating and evolving the web as it stood.
+            HTML5, CSS2, Google Chrome. Engines got faster and started a benchmark race with sunspider, kraken, octane.
+            Loosely this falls under the web 2.0 umbrella.
+          </aside>
+        </section>
 
+        <!-- 5 -->
+				<section>
+          <div>
+            <ol style="list-style:none">
+              <li><h2>1990s: Documents</h2></li>
+              <li><h2>2000s: Applications</h2></li>
+              <li><h2>2010s: ...?</h2></li>
+              <li><h2>2020s: ...?</h2></li>
+            </ol>
+          </div>
+          <aside class="notes">
+            So one way to look at these decades is 1990s was the rise of the document, while 2000s was the rise of the
+            app. 2001 saw the release of the iphone which enabled these new experiences on the web change happened at 
+            a rapid pace.
+          </aside>
+        </section>
+
+        <!-- 7 -->
+        <section>
+          <div style="text-align:center">
+            <img src="./frameworks.png">
+          </div>
+          <aside class="notes">
+            This problem was kind of unique to the 2010s, which became decade of innovation through experimentation of
+            JavaScript frameworks and libraries. Each of this new libraries brought their own paradigms of how to build
+            apps and organise code. They filled the gaps missing in the platform.
+            <br><br>
+            But they've also veered toward a convergance. While they all originally offered something quite different in
+            their inception, many have converged around a handful of major patterns.
+            <br><br>
+            The rise of JavaScript and this struggle for a decomposable web platform gave rise to these frameworks but 
+            the costs have not been properly realised; their are externalised costs which have yet to be realised.
+            Browsers have become vessels for this JS virtual machine and little else, and so little of the platform is
+            actually used, it seems. 
+            <br><br>
+            This cost, the cost of compute and the cost of network get pushed onto our users; it's not just about data
+            deserts or fringe users who disable JS. I don't need to tell Australians about the latency of servers hosted 
+            in us-east-1; the speed of light is bound by the laws of physics.
+            <br><br>
+            But also theres a misinterpretation of moore's law, we're not getting better phones which lessen the cost of
+            this. Alex Russel's work speaks more to this but our devices aren't getting faster, there's just more of them.
+            If you have an iphone in your pocket you're part of the elite, your device is many times faster than the
+            median, and the median is flatlining.
+            <br><br>
+            Scaling to your next zero, your next order of magnitude of users, gets more difficult as you dive into this 
+            long tail and the costs are more acutely evident. If this is alien to you, you might not be measuring the 
+            right things.
+            <br><br>
+            Your technical teams might be talking about SSR vs client side rendering, especially due to the costs of good
+            sold on the server, but this is yet more user experience arbitrage, to avoid the real problem we need to talk
+            about which is the cost of this JS.
+          </aside>
+        </section>
+
+        <!-- 9 -->
+				<section>
+          <div>
+            <ol style="list-style:none">
+              <li><h2>1990s: Documents</h2></li>
+              <li><h2>2000s: Applications</h2></li>
+              <li><h2>2010s: Frameworks</h2></li>
+              <li><h2>2020s: ...?</h2></li>
+            </ol>
+          </div>
+          <aside class="notes">
+            So going back to our mapping of decades, maybe the 2010s could be documented as the era of the frameworks
+            that scaffolded an architecture around our codebases, exploring how best to fill the gaps of the platform. 
+            <br><br>
+            What is the result of this? Are we going to keep this frankly obnoxious complexity around forever? I think
+            the convergance lets us see a path forward where leveraging the platform can help us lower our dependency
+            on such high cost patterns and get more for free.
+          </aside>
+        </section>
+
+        <!-- 10 -->
+				<section data-qr="https://k9l.io/ewm">
+          <div style="text-align: center">
+            <img src="./extensible-web-manifesto.png">
+          </div>
+          <aside class="notes">
+            2013 was somewhat an epochial moment for the web, perhaps our 1960s software crisis. In 2013 members of the
+            W3 cosigned to tighten the feedback loop between platform development and the industry, by allowing newer
+            low level primitives to serve as building blocks as new experiences and decompose large systems into
+            <strong>components</strong> that helped explain how the pieces got put together.
+            <br><br>
+            And so while innovation in userland progressed with frameworks browsers have been getting more capable to
+            address these needs.
+          </aside>
+        </section>
+
+        <!-- 11 -->
+				<section>
+          <h4>Extensible Web Manifesto</h4>
+          <h4 class="fragment fade-in">Service Workers</h4>
+          <h4 class="fragment fade-in">HID abstractions (Pointer Events)</h4>
+          <h4 class="fragment fade-in">Device APIs (WebSockets, WebUSB, WebBluetooth)</h4>
+          <h4 class="fragment fade-in">Exposed browser APIs (MutationObserver, ResizeObserver, IntersectionObserver)</h4>
+          <h4 class="fragment fade-in">Raw exploratory APIs, CSSOM, CSS Houdini, Paint API</h4>
+          <h4 class="fragment fade-in">Web Components (Custom Elements, Templates)</h4>
+          <aside class="notes">
+            So the fruits of the exensible web manifesto lead to many new innovations in the browser:
+            <br><br>
+            Service workers to control the network<br>
+            New input apis like pointer events<br>
+            Low level APIs like web usb<br>
+            Additionally exposing features that browsers have had internally such as the observer APIs<br>
+            New exploratory APIs like CSS Houdini and the paint APIs.<br>
+            The list goes on. One big addition around this time was the Web Components APIs, allowing
+            developers to extend HTML elements into their own custom widgets. This arguably solved the View part of the
+            Model-View paradigm.
+          </aside>
+        </section>
+
+        <!-- 12 -->
+				<section>
+          <h1>Object.observe</h1>
+          <pre><code data-trim>
+            function listen(records) {
+              console.log('object changed', records)
+            }
+            const o = Object.observe({}, listen)
+            o.foo = 1
+          </code></pre>
+          <aside class="notes">
+            But views are nothing without their models, and one of the more disappointing failures of this era was
+            Object.observe. This was designed around the idea of tracking object mutations. You'd pass an object. The
+            model, for the view. It was ultimately deemed too complex and not the right fit when it came to framework
+            use, and so frameworks live on, unable to be dethroned...
+          </aside>
+        </section>
+
+        <!-- 13 -->
+        <section>
+          <h1>Reactive Observables</h1>
+          <aside class="notes">
+            Meanwhile frontend frameworks were converging around one pattern of reactive Observables for managing state.
+            Frameworks like Angular, and libraries, rxjs, mobx, have all converged on this idea of Reactive programming.
+            <br><br>
+            The idea of bringing this into the platform has been kicked around since 2015, at various standard groups
+            but I think this is starting to become a reality.
+          </aside>
+        </section>
+
+        <!-- 14 -->
+				<section data-qr="https://k9l.io/observable">
+          <div style="text-align: center">
+            <img src="./wcig.png" height="100">
+          </div>
+          <pre><code data-trim>
+            let o = new Observable(subscriber => {
+              subscriber.next(1)
+            })
+            o.subscribe({
+              next: v => console.log(v)
+            })
+          </code></pre>
+          <pre><code data-trim>
+            element
+              .on('click')
+              .filter(e => e.target.matches('.foo'))
+              .map(e => ({ x: e.clientX, y: e.clientY }))
+              .subscribe({ next: handleClickAtPoint })
+          </code></pre>
+          <aside class="notes">
+            And so this is now a proposal to land this feature into the platform.
+          </aside>
+        </section>
+				<section>
+          <svg xmlns="http://www.w3.org/2000/svg" width="977" height="630" role="img"><rect width="977" height="630" fill="transparent"></rect><g transform="translate(150,40)"><g><line opacity="1" x1="48.35714285714289" x2="48.35714285714289" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line><line opacity="1" x1="145.0714285714286" x2="145.0714285714286" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line><line opacity="1" x1="241.7857142857143" x2="241.7857142857143" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line><line opacity="1" x1="338.5" x2="338.5" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line><line opacity="1" x1="435.2142857142857" x2="435.2142857142857" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line><line opacity="1" x1="531.9285714285714" x2="531.9285714285714" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line><line opacity="1" x1="628.6428571428571" x2="628.6428571428571" y1="0" y2="550" stroke="#dddddd" stroke-width="1" stroke-dasharray="1 2" stroke-opacity="0.4"></line></g><g transform="translate(0,0)"><g transform="translate(48.35714285714289,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2016</text></g><g transform="translate(145.0714285714286,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2017</text></g><g transform="translate(241.7857142857143,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2018</text></g><g transform="translate(338.5,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2019</text></g><g transform="translate(435.2142857142857,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2020</text></g><g transform="translate(531.9285714285714,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2021</text></g><g transform="translate(628.6428571428571,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="alphabetic" text-anchor="middle" transform="translate(0,-9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2022</text></g><line style="stroke: transparent; stroke-width: 0px;" x1="0" x2="677" y1="0" y2="0"></line></g><g transform="translate(0,550)"><g transform="translate(48.35714285714289,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2016</text></g><g transform="translate(145.0714285714286,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2017</text></g><g transform="translate(241.7857142857143,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2018</text></g><g transform="translate(338.5,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2019</text></g><g transform="translate(435.2142857142857,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2020</text></g><g transform="translate(531.9285714285714,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2021</text></g><g transform="translate(628.6428571428571,0)" style="opacity: 1;"><line x1="0" x2="0" y1="0" y2="0" style="stroke: rgb(119, 119, 119); stroke-width: 1px; fill: rgb(255, 246, 230);"></line><text dominant-baseline="text-before-edge" text-anchor="middle" transform="translate(0,9) rotate(0)" style="fill: rgb(255, 246, 230); font-size: 12px; font-family: &quot;IBM Plex Mono&quot;, monospace;">2022</text></g><line style="stroke: transparent; stroke-width: 0px;" x1="0" x2="677" y1="0" y2="0"></line></g><text data-testid="label.start.react" x="-20" y="25" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(103, 139, 255);">React</text><text data-testid="label.start.vuejs" x="-20" y="175" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(101, 255, 255);">Vue.js</text><text data-testid="label.start.angular" x="-20" y="75" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 111, 194);">Angular</text><text data-testid="label.start.preact" x="-20" y="225" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 151, 151);">Preact</text><text data-testid="label.start.ember" x="-20" y="125" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(107, 255, 179);">Ember</text><text data-testid="label.start.svelte" x="-20" y="275" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 255, 196);">Svelte</text><text data-testid="label.start.alpinejs" x="-20" y="375" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(83, 255, 255);">Alpine.js</text><text data-testid="label.start.litelement" x="-20" y="325" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 223, 50);">Lit</text><text data-testid="label.start.solid" x="-20" y="425" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(127, 226, 80);">Solid</text><text data-testid="label.start.qwik" x="-20" y="525" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(43, 229, 255);">Qwik</text><text data-testid="label.start.stencil" x="-20" y="475" text-anchor="end" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(201, 109, 240);">Stencil</text><text data-testid="label.end.react" x="697" y="25" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(103, 139, 255);">React</text><text data-testid="label.end.vuejs" x="697" y="125" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(101, 255, 255);">Vue.js</text><text data-testid="label.end.angular" x="697" y="75" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 111, 194);">Angular</text><text data-testid="label.end.preact" x="697" y="225" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 151, 151);">Preact</text><text data-testid="label.end.ember" x="697" y="275" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(107, 255, 179);">Ember</text><text data-testid="label.end.svelte" x="697" y="175" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 255, 196);">Svelte</text><text data-testid="label.end.alpinejs" x="697" y="425" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(83, 255, 255);">Alpine.js</text><text data-testid="label.end.litelement" x="697" y="375" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(255, 223, 50);">Lit</text><text data-testid="label.end.solid" x="697" y="325" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(127, 226, 80);">Solid</text><text data-testid="label.end.qwik" x="697" y="525" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(43, 229, 255);">Qwik</text><text data-testid="label.end.stencil" x="697" y="475" text-anchor="start" dominant-baseline="central" opacity="1" style="font-size: 12px; font-weight: 500; text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 3px; font-family: &quot;IBM Plex Mono&quot;, monospace; fill: rgb(201, 109, 240);">Stencil</text><path data-testid="line.react" fill="none" d="M0,25L8.059523809523816,25C16.11904761904763,25,32.23809523809526,25,45.13333333333336,25C58.02857142857146,25,67.70000000000003,25,78.98333333333336,25C90.2666666666667,25,103.1619047619048,25,114.44523809523814,25C125.72857142857147,25,135.40000000000006,25,145.0714285714286,25C154.74285714285716,25,164.41428571428574,25,175.69761904761904,25C186.98095238095243,25,199.8761904761905,25,211.15952380952385,25C222.44285714285718,25,232.11428571428573,25,241.7857142857143,25C251.45714285714288,25,261.12857142857143,25,272.41190476190474,25C283.6952380952381,25,296.5904761904762,25,307.8738095238095,25C319.15714285714284,25,328.8285714285714,25,338.5,25C348.1714285714286,25,357.84285714285716,25,369.12619047619046,25C380.4095238095238,25,393.30476190476185,25,404.58809523809526,25C415.87142857142857,25,425.54285714285714,25,435.2142857142857,25C444.8857142857143,25,454.5571428571429,25,465.8404761904762,25C477.12380952380954,25,490.0190476190476,25,501.30238095238093,25C512.5857142857143,25,522.2571428571429,25,531.9285714285714,25C541.6,25,551.2714285714286,25,562.5547619047619,25C573.8380952380952,25,586.7333333333332,25,598.0166666666665,25C609.3,25,618.9714285714285,25,631.8666666666667,25C644.7619047619047,25,660.8809523809524,25,668.9404761904761,25L677,25" stroke="rgba(72, 97, 236, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.react.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,25L8.059523809523816,25C16.11904761904763,25,32.23809523809526,25,45.13333333333336,25C58.02857142857146,25,67.70000000000003,25,78.98333333333336,25C90.2666666666667,25,103.1619047619048,25,114.44523809523814,25C125.72857142857147,25,135.40000000000006,25,145.0714285714286,25C154.74285714285716,25,164.41428571428574,25,175.69761904761904,25C186.98095238095243,25,199.8761904761905,25,211.15952380952385,25C222.44285714285718,25,232.11428571428573,25,241.7857142857143,25C251.45714285714288,25,261.12857142857143,25,272.41190476190474,25C283.6952380952381,25,296.5904761904762,25,307.8738095238095,25C319.15714285714284,25,328.8285714285714,25,338.5,25C348.1714285714286,25,357.84285714285716,25,369.12619047619046,25C380.4095238095238,25,393.30476190476185,25,404.58809523809526,25C415.87142857142857,25,425.54285714285714,25,435.2142857142857,25C444.8857142857143,25,454.5571428571429,25,465.8404761904762,25C477.12380952380954,25,490.0190476190476,25,501.30238095238093,25C512.5857142857143,25,522.2571428571429,25,531.9285714285714,25C541.6,25,551.2714285714286,25,562.5547619047619,25C573.8380952380952,25,586.7333333333332,25,598.0166666666665,25C609.3,25,618.9714285714285,25,631.8666666666667,25C644.7619047619047,25,660.8809523809524,25,668.9404761904761,25L677,25" stroke-linecap="butt"></path><path data-testid="line.vuejs" fill="none" d="M0,175L8.059523809523816,175C16.11904761904763,175,32.23809523809526,175,45.13333333333336,175C58.02857142857146,175,67.70000000000003,175,78.98333333333336,166.66666666666666C90.2666666666667,158.33333333333334,103.1619047619048,141.66666666666666,114.44523809523814,133.33333333333334C125.72857142857147,125,135.40000000000006,125,145.0714285714286,125C154.74285714285716,125,164.41428571428574,125,175.69761904761904,125C186.98095238095243,125,199.8761904761905,125,211.15952380952385,125C222.44285714285718,125,232.11428571428573,125,241.7857142857143,125C251.45714285714288,125,261.12857142857143,125,272.41190476190474,125C283.6952380952381,125,296.5904761904762,125,307.8738095238095,125C319.15714285714284,125,328.8285714285714,125,338.5,125C348.1714285714286,125,357.84285714285716,125,369.12619047619046,125C380.4095238095238,125,393.30476190476185,125,404.58809523809526,125C415.87142857142857,125,425.54285714285714,125,435.2142857142857,125C444.8857142857143,125,454.5571428571429,125,465.8404761904762,125C477.12380952380954,125,490.0190476190476,125,501.30238095238093,125C512.5857142857143,125,522.2571428571429,125,531.9285714285714,125C541.6,125,551.2714285714286,125,562.5547619047619,125C573.8380952380952,125,586.7333333333332,125,598.0166666666665,125C609.3,125,618.9714285714285,125,631.8666666666667,125C644.7619047619047,125,660.8809523809524,125,668.9404761904761,125L677,125" stroke="rgba(71, 207, 237, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.vuejs.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,175L8.059523809523816,175C16.11904761904763,175,32.23809523809526,175,45.13333333333336,175C58.02857142857146,175,67.70000000000003,175,78.98333333333336,166.66666666666666C90.2666666666667,158.33333333333334,103.1619047619048,141.66666666666666,114.44523809523814,133.33333333333334C125.72857142857147,125,135.40000000000006,125,145.0714285714286,125C154.74285714285716,125,164.41428571428574,125,175.69761904761904,125C186.98095238095243,125,199.8761904761905,125,211.15952380952385,125C222.44285714285718,125,232.11428571428573,125,241.7857142857143,125C251.45714285714288,125,261.12857142857143,125,272.41190476190474,125C283.6952380952381,125,296.5904761904762,125,307.8738095238095,125C319.15714285714284,125,328.8285714285714,125,338.5,125C348.1714285714286,125,357.84285714285716,125,369.12619047619046,125C380.4095238095238,125,393.30476190476185,125,404.58809523809526,125C415.87142857142857,125,425.54285714285714,125,435.2142857142857,125C444.8857142857143,125,454.5571428571429,125,465.8404761904762,125C477.12380952380954,125,490.0190476190476,125,501.30238095238093,125C512.5857142857143,125,522.2571428571429,125,531.9285714285714,125C541.6,125,551.2714285714286,125,562.5547619047619,125C573.8380952380952,125,586.7333333333332,125,598.0166666666665,125C609.3,125,618.9714285714285,125,631.8666666666667,125C644.7619047619047,125,660.8809523809524,125,668.9404761904761,125L677,125" stroke-linecap="butt"></path><path data-testid="line.angular" fill="none" d="M0,75L8.059523809523816,75C16.11904761904763,75,32.23809523809526,75,45.13333333333336,75C58.02857142857146,75,67.70000000000003,75,78.98333333333336,75C90.2666666666667,75,103.1619047619048,75,114.44523809523814,75C125.72857142857147,75,135.40000000000006,75,145.0714285714286,75C154.74285714285716,75,164.41428571428574,75,175.69761904761904,75C186.98095238095243,75,199.8761904761905,75,211.15952380952385,75C222.44285714285718,75,232.11428571428573,75,241.7857142857143,75C251.45714285714288,75,261.12857142857143,75,272.41190476190474,75C283.6952380952381,75,296.5904761904762,75,307.8738095238095,75C319.15714285714284,75,328.8285714285714,75,338.5,75C348.1714285714286,75,357.84285714285716,75,369.12619047619046,75C380.4095238095238,75,393.30476190476185,75,404.58809523809526,75C415.87142857142857,75,425.54285714285714,75,435.2142857142857,75C444.8857142857143,75,454.5571428571429,75,465.8404761904762,75C477.12380952380954,75,490.0190476190476,75,501.30238095238093,75C512.5857142857143,75,522.2571428571429,75,531.9285714285714,75C541.6,75,551.2714285714286,75,562.5547619047619,75C573.8380952380952,75,586.7333333333332,75,598.0166666666665,75C609.3,75,618.9714285714285,75,631.8666666666667,75C644.7619047619047,75,660.8809523809524,75,668.9404761904761,75L677,75" stroke="rgba(239, 78, 136, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.angular.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,75L8.059523809523816,75C16.11904761904763,75,32.23809523809526,75,45.13333333333336,75C58.02857142857146,75,67.70000000000003,75,78.98333333333336,75C90.2666666666667,75,103.1619047619048,75,114.44523809523814,75C125.72857142857147,75,135.40000000000006,75,145.0714285714286,75C154.74285714285716,75,164.41428571428574,75,175.69761904761904,75C186.98095238095243,75,199.8761904761905,75,211.15952380952385,75C222.44285714285718,75,232.11428571428573,75,241.7857142857143,75C251.45714285714288,75,261.12857142857143,75,272.41190476190474,75C283.6952380952381,75,296.5904761904762,75,307.8738095238095,75C319.15714285714284,75,328.8285714285714,75,338.5,75C348.1714285714286,75,357.84285714285716,75,369.12619047619046,75C380.4095238095238,75,393.30476190476185,75,404.58809523809526,75C415.87142857142857,75,425.54285714285714,75,435.2142857142857,75C444.8857142857143,75,454.5571428571429,75,465.8404761904762,75C477.12380952380954,75,490.0190476190476,75,501.30238095238093,75C512.5857142857143,75,522.2571428571429,75,531.9285714285714,75C541.6,75,551.2714285714286,75,562.5547619047619,75C573.8380952380952,75,586.7333333333332,75,598.0166666666665,75C609.3,75,618.9714285714285,75,631.8666666666667,75C644.7619047619047,75,660.8809523809524,75,668.9404761904761,75L677,75" stroke-linecap="butt"></path><path data-testid="line.preact" fill="none" d="M0,225L40.29761904761905,225C80.5952380952381,225,161.1904761904762,225,206.32380952380956,225C251.45714285714288,225,261.12857142857143,225,272.41190476190474,216.66666666666666C283.6952380952381,208.33333333333334,296.5904761904762,191.66666666666666,307.8738095238095,183.33333333333334C319.15714285714284,175,328.8285714285714,175,338.5,175C348.1714285714286,175,357.84285714285716,175,369.12619047619046,183.33333333333334C380.4095238095238,191.66666666666666,393.30476190476185,208.33333333333334,404.58809523809526,216.66666666666666C415.87142857142857,225,425.54285714285714,225,435.2142857142857,225C444.8857142857143,225,454.5571428571429,225,465.8404761904762,225C477.12380952380954,225,490.0190476190476,225,501.30238095238093,225C512.5857142857143,225,522.2571428571429,225,531.9285714285714,225C541.6,225,551.2714285714286,225,562.5547619047619,225C573.8380952380952,225,586.7333333333332,225,598.0166666666665,225C609.3,225,618.9714285714285,225,631.8666666666667,225C644.7619047619047,225,660.8809523809524,225,668.9404761904761,225L677,225" stroke="rgba(254, 106, 106, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.preact.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,225L40.29761904761905,225C80.5952380952381,225,161.1904761904762,225,206.32380952380956,225C251.45714285714288,225,261.12857142857143,225,272.41190476190474,216.66666666666666C283.6952380952381,208.33333333333334,296.5904761904762,191.66666666666666,307.8738095238095,183.33333333333334C319.15714285714284,175,328.8285714285714,175,338.5,175C348.1714285714286,175,357.84285714285716,175,369.12619047619046,183.33333333333334C380.4095238095238,191.66666666666666,393.30476190476185,208.33333333333334,404.58809523809526,216.66666666666666C415.87142857142857,225,425.54285714285714,225,435.2142857142857,225C444.8857142857143,225,454.5571428571429,225,465.8404761904762,225C477.12380952380954,225,490.0190476190476,225,501.30238095238093,225C512.5857142857143,225,522.2571428571429,225,531.9285714285714,225C541.6,225,551.2714285714286,225,562.5547619047619,225C573.8380952380952,225,586.7333333333332,225,598.0166666666665,225C609.3,225,618.9714285714285,225,631.8666666666667,225C644.7619047619047,225,660.8809523809524,225,668.9404761904761,225L677,225" stroke-linecap="butt"></path><path data-testid="line.ember" fill="none" d="M0,125L8.059523809523816,125C16.11904761904763,125,32.23809523809526,125,45.13333333333336,125C58.02857142857146,125,67.70000000000003,125,78.98333333333336,133.33333333333334C90.2666666666667,141.66666666666666,103.1619047619048,158.33333333333334,114.44523809523814,166.66666666666666C125.72857142857147,175,135.40000000000006,175,145.0714285714286,175C154.74285714285716,175,164.41428571428574,175,175.69761904761904,175C186.98095238095243,175,199.8761904761905,175,211.15952380952385,175C222.44285714285718,175,232.11428571428573,175,241.7857142857143,175C251.45714285714288,175,261.12857142857143,175,272.41190476190474,183.33333333333334C283.6952380952381,191.66666666666666,296.5904761904762,208.33333333333334,307.8738095238095,216.66666666666666C319.15714285714284,225,328.8285714285714,225,338.5,225C348.1714285714286,225,357.84285714285716,225,369.12619047619046,233.33333333333334C380.4095238095238,241.66666666666666,393.30476190476185,258.3333333333333,404.58809523809526,266.6666666666667C415.87142857142857,275,425.54285714285714,275,435.2142857142857,275C444.8857142857143,275,454.5571428571429,275,465.8404761904762,275C477.12380952380954,275,490.0190476190476,275,501.30238095238093,275C512.5857142857143,275,522.2571428571429,275,531.9285714285714,275C541.6,275,551.2714285714286,275,562.5547619047619,275C573.8380952380952,275,586.7333333333332,275,598.0166666666665,275C609.3,275,618.9714285714285,275,631.8666666666667,275C644.7619047619047,275,660.8809523809524,275,668.9404761904761,275L677,275" stroke="rgba(75, 199, 125, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.ember.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,125L8.059523809523816,125C16.11904761904763,125,32.23809523809526,125,45.13333333333336,125C58.02857142857146,125,67.70000000000003,125,78.98333333333336,133.33333333333334C90.2666666666667,141.66666666666666,103.1619047619048,158.33333333333334,114.44523809523814,166.66666666666666C125.72857142857147,175,135.40000000000006,175,145.0714285714286,175C154.74285714285716,175,164.41428571428574,175,175.69761904761904,175C186.98095238095243,175,199.8761904761905,175,211.15952380952385,175C222.44285714285718,175,232.11428571428573,175,241.7857142857143,175C251.45714285714288,175,261.12857142857143,175,272.41190476190474,183.33333333333334C283.6952380952381,191.66666666666666,296.5904761904762,208.33333333333334,307.8738095238095,216.66666666666666C319.15714285714284,225,328.8285714285714,225,338.5,225C348.1714285714286,225,357.84285714285716,225,369.12619047619046,233.33333333333334C380.4095238095238,241.66666666666666,393.30476190476185,258.3333333333333,404.58809523809526,266.6666666666667C415.87142857142857,275,425.54285714285714,275,435.2142857142857,275C444.8857142857143,275,454.5571428571429,275,465.8404761904762,275C477.12380952380954,275,490.0190476190476,275,501.30238095238093,275C512.5857142857143,275,522.2571428571429,275,531.9285714285714,275C541.6,275,551.2714285714286,275,562.5547619047619,275C573.8380952380952,275,586.7333333333332,275,598.0166666666665,275C609.3,275,618.9714285714285,275,631.8666666666667,275C644.7619047619047,275,660.8809523809524,275,668.9404761904761,275L677,275" stroke-linecap="butt"></path><path data-testid="line.svelte" fill="none" d="M0,275L56.416666666666664,275C112.83333333333333,275,225.66666666666666,275,286.9190476190476,275C348.1714285714286,275,357.84285714285716,275,369.12619047619046,258.3333333333333C380.4095238095238,241.66666666666666,393.30476190476185,208.33333333333334,404.58809523809526,191.66666666666666C415.87142857142857,175,425.54285714285714,175,435.2142857142857,175C444.8857142857143,175,454.5571428571429,175,465.8404761904762,175C477.12380952380954,175,490.0190476190476,175,501.30238095238093,175C512.5857142857143,175,522.2571428571429,175,531.9285714285714,175C541.6,175,551.2714285714286,175,562.5547619047619,175C573.8380952380952,175,586.7333333333332,175,598.0166666666665,175C609.3,175,618.9714285714285,175,631.8666666666667,175C644.7619047619047,175,660.8809523809524,175,668.9404761904761,175L677,175" stroke="rgba(255, 229, 137, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.svelte.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,275L56.416666666666664,275C112.83333333333333,275,225.66666666666666,275,286.9190476190476,275C348.1714285714286,275,357.84285714285716,275,369.12619047619046,258.3333333333333C380.4095238095238,241.66666666666666,393.30476190476185,208.33333333333334,404.58809523809526,191.66666666666666C415.87142857142857,175,425.54285714285714,175,435.2142857142857,175C444.8857142857143,175,454.5571428571429,175,465.8404761904762,175C477.12380952380954,175,490.0190476190476,175,501.30238095238093,175C512.5857142857143,175,522.2571428571429,175,531.9285714285714,175C541.6,175,551.2714285714286,175,562.5547619047619,175C573.8380952380952,175,586.7333333333332,175,598.0166666666665,175C609.3,175,618.9714285714285,175,631.8666666666667,175C644.7619047619047,175,660.8809523809524,175,668.9404761904761,175L677,175" stroke-linecap="butt"></path><path data-testid="line.alpinejs" fill="none" d="M0,375L72.53571428571429,375C145.07142857142858,375,290.14285714285717,375,367.51428571428573,375C444.8857142857143,375,454.5571428571429,375,465.8404761904762,375C477.12380952380954,375,490.0190476190476,375,501.30238095238093,375C512.5857142857143,375,522.2571428571429,375,531.9285714285714,375C541.6,375,551.2714285714286,375,562.5547619047619,383.3333333333333C573.8380952380952,391.6666666666667,586.7333333333332,408.3333333333333,598.0166666666665,416.6666666666667C609.3,425,618.9714285714285,425,631.8666666666667,425C644.7619047619047,425,660.8809523809524,425,668.9404761904761,425L677,425" stroke="rgba(58, 187, 179, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.alpinejs.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,375L72.53571428571429,375C145.07142857142858,375,290.14285714285717,375,367.51428571428573,375C444.8857142857143,375,454.5571428571429,375,465.8404761904762,375C477.12380952380954,375,490.0190476190476,375,501.30238095238093,375C512.5857142857143,375,522.2571428571429,375,531.9285714285714,375C541.6,375,551.2714285714286,375,562.5547619047619,383.3333333333333C573.8380952380952,391.6666666666667,586.7333333333332,408.3333333333333,598.0166666666665,416.6666666666667C609.3,425,618.9714285714285,425,631.8666666666667,425C644.7619047619047,425,660.8809523809524,425,668.9404761904761,425L677,425" stroke-linecap="butt"></path><path data-testid="line.litelement" fill="none" d="M0,325L72.53571428571429,325C145.07142857142858,325,290.14285714285717,325,367.51428571428573,325C444.8857142857143,325,454.5571428571429,325,465.8404761904762,325C477.12380952380954,325,490.0190476190476,325,501.30238095238093,325C512.5857142857143,325,522.2571428571429,325,531.9285714285714,325C541.6,325,551.2714285714286,325,562.5547619047619,333.3333333333333C573.8380952380952,341.6666666666667,586.7333333333332,358.3333333333333,598.0166666666665,366.6666666666667C609.3,375,618.9714285714285,375,631.8666666666667,375C644.7619047619047,375,660.8809523809524,375,668.9404761904761,375L677,375" stroke="rgba(236, 156, 35, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.litelement.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,325L72.53571428571429,325C145.07142857142858,325,290.14285714285717,325,367.51428571428573,325C444.8857142857143,325,454.5571428571429,325,465.8404761904762,325C477.12380952380954,325,490.0190476190476,325,501.30238095238093,325C512.5857142857143,325,522.2571428571429,325,531.9285714285714,325C541.6,325,551.2714285714286,325,562.5547619047619,333.3333333333333C573.8380952380952,341.6666666666667,586.7333333333332,358.3333333333333,598.0166666666665,366.6666666666667C609.3,375,618.9714285714285,375,631.8666666666667,375C644.7619047619047,375,660.8809523809524,375,668.9404761904761,375L677,375" stroke-linecap="butt"></path><path data-testid="line.solid" fill="none" d="M0,425L88.65476190476191,425C177.30952380952382,425,354.61904761904765,425,448.1095238095238,425C541.6,425,551.2714285714286,425,562.5547619047619,408.3333333333333C573.8380952380952,391.6666666666667,586.7333333333332,358.3333333333333,598.0166666666665,341.6666666666667C609.3,325,618.9714285714285,325,631.8666666666667,325C644.7619047619047,325,660.8809523809524,325,668.9404761904761,325L677,325" stroke="rgba(89, 158, 56, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.solid.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,425L88.65476190476191,425C177.30952380952382,425,354.61904761904765,425,448.1095238095238,425C541.6,425,551.2714285714286,425,562.5547619047619,408.3333333333333C573.8380952380952,391.6666666666667,586.7333333333332,358.3333333333333,598.0166666666665,341.6666666666667C609.3,325,618.9714285714285,325,631.8666666666667,325C644.7619047619047,325,660.8809523809524,325,668.9404761904761,325L677,325" stroke-linecap="butt"></path><path data-testid="line.qwik" fill="none" d="M0,525L104.77380952380952,525C209.54761904761904,525,419.0952380952381,525,531.9285714285714,525C644.7619047619047,525,660.8809523809524,525,668.9404761904761,525L677,525" stroke="rgba(30, 160, 242, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.qwik.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,525L104.77380952380952,525C209.54761904761904,525,419.0952380952381,525,531.9285714285714,525C644.7619047619047,525,660.8809523809524,525,668.9404761904761,525L677,525" stroke-linecap="butt"></path><path data-testid="line.stencil" fill="none" d="M0,475L104.77380952380952,475C209.54761904761904,475,419.0952380952381,475,531.9285714285714,475C644.7619047619047,475,660.8809523809524,475,668.9404761904761,475L677,475" stroke="rgba(141, 76, 168, 1)" stroke-width="5" stroke-linecap="round" stroke-opacity="1" style="pointer-events: none;"></path><path data-testid="line.stencil.interactive" fill="none" stroke="red" stroke-opacity="0" stroke-width="50" d="M0,475L104.77380952380952,475C209.54761904761904,475,419.0952380952381,475,531.9285714285714,475C644.7619047619047,475,660.8809523809524,475,668.9404761904761,475L677,475" stroke-linecap="butt"></path><g transform="translate(48.35714285714289, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">53%</text></g><g transform="translate(145.0714285714286, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">62%</text></g><g transform="translate(241.7857142857143, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">72%</text></g><g transform="translate(338.5, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">80%</text></g><g transform="translate(435.2142857142857, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">80%</text></g><g transform="translate(531.9285714285714, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">80%</text></g><g transform="translate(628.6428571428571, 25)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4861EC" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">82%</text></g><g transform="translate(48.35714285714289, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">10%</text></g><g transform="translate(145.0714285714286, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">22%</text></g><g transform="translate(241.7857142857143, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">32%</text></g><g transform="translate(338.5, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">47%</text></g><g transform="translate(435.2142857142857, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">49%</text></g><g transform="translate(531.9285714285714, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">51%</text></g><g transform="translate(628.6428571428571, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#47CFED" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">46%</text></g><g transform="translate(48.35714285714289, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">20%</text></g><g transform="translate(145.0714285714286, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">29%</text></g><g transform="translate(241.7857142857143, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">58%</text></g><g transform="translate(338.5, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">58%</text></g><g transform="translate(435.2142857142857, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">56%</text></g><g transform="translate(531.9285714285714, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">54%</text></g><g transform="translate(628.6428571428571, 75)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#ef4e88" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">49%</text></g><g transform="translate(241.7857142857143, 225)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FE6A6A" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">8%</text></g><g transform="translate(338.5, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FE6A6A" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">12%</text></g><g transform="translate(435.2142857142857, 225)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FE6A6A" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">14%</text></g><g transform="translate(531.9285714285714, 225)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FE6A6A" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">14%</text></g><g transform="translate(628.6428571428571, 225)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FE6A6A" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">13%</text></g><g transform="translate(48.35714285714289, 125)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">14%</text></g><g transform="translate(145.0714285714286, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">11%</text></g><g transform="translate(241.7857142857143, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">11%</text></g><g transform="translate(338.5, 225)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">12%</text></g><g transform="translate(435.2142857142857, 275)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">11%</text></g><g transform="translate(531.9285714285714, 275)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">9%</text></g><g transform="translate(628.6428571428571, 275)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#4BC77D" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">8%</text></g><g transform="translate(338.5, 275)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FFE589" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">8%</text></g><g transform="translate(435.2142857142857, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FFE589" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">15%</text></g><g transform="translate(531.9285714285714, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FFE589" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">20%</text></g><g transform="translate(628.6428571428571, 175)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#FFE589" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">21%</text></g><g transform="translate(435.2142857142857, 375)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#3ABBB3" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">3%</text></g><g transform="translate(531.9285714285714, 375)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#3ABBB3" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">6%</text></g><g transform="translate(628.6428571428571, 425)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#3ABBB3" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">6%</text></g><g transform="translate(435.2142857142857, 325)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#EC9C23" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">5%</text></g><g transform="translate(531.9285714285714, 325)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#EC9C23" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">7%</text></g><g transform="translate(628.6428571428571, 375)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#EC9C23" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">6%</text></g><g transform="translate(531.9285714285714, 425)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#599E38" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">3%</text></g><g transform="translate(628.6428571428571, 325)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#599E38" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">6%</text></g><g transform="translate(628.6428571428571, 525)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#1ea0f2" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">2%</text></g><g transform="translate(628.6428571428571, 475)" style="pointer-events: none;"><circle r="19.5" cy="7.2" fill="rgba(0, 0, 0, .2)"></circle><circle r="18" fill="#272325" stroke="#8D4CA8" stroke-width="3"></circle><text text-anchor="middle" y="4" fill="#FFF6E6" font-size="11px">4%</text></g></g></svg>
+          <aside class="notes">
+            But if we look at the top frameworks by popularity, a lot of them have also converged on other find
+            grained reactivity primitives, otherwise known as Signals. Aside from React, all the major frameworks
+            have converged around Signals for state management.
+            <br><br>
+            Svelte calls them Runes, Ember calls them computed properties, but they're the same thing. Unless you're
+            React, signals is the Model part of the view problem. Even React has integrations of signal-like
+            libraries: Recoil, Jotai.
+          </aside>
+        </section>
+
+        <!-- 15 -->
+				<section>
+          <div style="text-align: center">
+            <img src="./knockout-logo.png">
+          </div>
+          <pre><code data-trim>
+          const count = ko.observable(0);
+          const doubleCount = ko.pureComputed(() =>
+            count() * 2
+          );
+          </code></pre>
+          <aside class="notes">
+            It's not a new idea. But these ideas can often take a while to percolate. KnockoutJS originally
+            popularised this idea in 2010, with the idea of an observable value and a computable side effect.
+          </aside>
+        </section>
+
+        <!-- 14 -->
+				<section data-qr="https://k9l.io/signals">
+          <div style="text-align: center">
+            <img src="./signals-logo.png" height="200">
+          </div>
+          <pre><code data-trim>
+          const count = new Signal.State(0);
+          const doubleCount = new Signal.Computed(() =>
+            count() * 2
+          );
+          </code></pre>
+          <aside class="notes">
+            But now there's also an effort to standardise these at TC39, to specify this built-in to the language.
+            Members of popular frameworks like Angular, Ember, Preact, QWIK, Solid, Svelte, Vue, and more are all
+            collaborating on building out a universal protocol for Signals that will be baked into the language.
+          </aside>
+        </section>
+
+        <!-- 15 -->
+				<section style="text-align:center">
+          <h1>Observables + Signals</h1>
+          <h2>Closing the value add gap of frameworks</h2>
+          <aside class="notes">
+            So I think a large gap that frameworks filled is now being pushed down into the platform. 
+            <br><br>
+            Global client side state managent which was the central pitch of the frameworks in
+            their inception is starting to look like a solved problem.
+          </aside>
+        </section>
+
+        <!-- 16 -->
+				<section data-qr="https://k9l.io/domparts">
+          <pre><code data-trim>
+            &lt;template parts>
+              &lt;p>Hello {{name}}&lt;>
+            &lt;/template>
+          </code></pre>
+          <aside class="notes">
+            There's nascent discussions and proposals around integrating data mutations right into HTML too, with
+            "DOM Parts" which could end up taking Signals as a feed-in mechanism. There's a lot to solve here so
+            I'm not going to go into too much detail but you can dive into the proposal on the QR code.
+            <br><br>
+            This is more a vision of the future; where data binding becomes an intrinsic part of HTML. All of the
+            puzzle pieces are starting to come together here, and so I'm hopeful we'll see the gap being closed
+            here.
+          </aside>
+        </section>
+
+        <!-- 19 -->
+				<section>
+          <div style="text-align:center">
+            <img src="./design-systems.png">
+          </div>
+          <aside class="notes">
+            Going back to the 2000s though, we also saw the industry maturing in design. "Design Patterns" and
+            "Design Systems" that evolved from branding guidelines and brand identity. UI libraries like YUI and
+            jQuery UI popularised this idea of off-the-shelf component libraries that have now extended into the
+            design systems where we see branding and interactivity combined, into a new vernacular with which 
+            applications speak to their users.
+          </aside>
+        </section>
+
+        <!-- 17 -->
+				<section data-qr="https://k9l.io/viewtransitions">
+          <video data-autoplay loop src="./view-transitions.mp4"></video>
+          <aside class="notes">
+            And we can't talk design without talking about CSS, which has also made huge strides at catching up to
+            the innovation of the decade; not just the language through features like variables and nesting, but
+            also whole new technological advancements like View Transitions that allow for declaring transitions
+            between pages to create seamless experiences, blurring the line between MPA and SPA, if there ever was
+            a line in the first place.
+          </aside>
+        </section>
+
+        <!-- 20 -->
+				<section>
+          <div style="text-align:center">
+            <img src="./material-web.gif">
+          </div>
+          <aside class="notes">
+            But design systems aren't just about styling pages or branding them to a companies colour pallete. It is
+            about creating that language of interactivity. Something like Google's Material design system is arguably
+            the most used because it coincides with the design language of the android operating system. Systems like
+            Material design have invented new paradigms of interactivity like the floating action button.
+            <br><br>
+            But again these come at high operational cost. Big companies are pouring millions of dollars into these
+            libraries and these teams continuously firefight for their positions, as rigour goes up the team finds it
+            harder to deliver at the pace of application engineering, because they're solving for the whole problem
+            space, reinventing the wheel over and over.
+          </aside>
+        </section>
+
+        <!-- 21 -->
+				<section>
+          <div style="text-align:center">
+            <img src="./web-awesome.png">
+          </div>
+          <aside class="notes">
+            But isn't just giant companies throwing their weight around. Web Awesome, a component system by the
+            Font Awesome team, just crowdsourced nearly three quarters of a million USD to continue building their
+            open source design system which used to be called Shoelace. There is a clear and evident need for making
+            this kind of development easier.
+          </aside>
+        </section>
+
+        <!-- 22 -->
+				<section>
+          <div style="text-align:center">
+            <img src="./html-form-example.png">
+            <small style="font-size:1rem">Source https://www.inwebson.com/html5/html5-form-with-css3-markup/</small>
+          </div>
+          <aside class="notes">
+            But looking at something like built-in forms and form styling, it's not hard to see why a lot of these
+            design systems exist.
+          </aside>
+        </section>
+
+        <!-- 23 -->
+				<section data-qr="https://k9l.io/edgeformstyles">
+          <div style="text-align:center">
+            <img src="./improving-edge-forms.png">
+          </div>
+          <aside class="notes">
+            In 2019 when Microsoft switched Edge from using the EdgeHTML & Chakra to using Chromium, Greg Witworth
+            lead the forms team to restyling and modernising some of the available form controls. The improvements
+            were soreley needed, but also subtle. They solved key accessibility issues and gave us more tolerable
+            defaults. More bold actions needed to be taken though.
+          </aside>
+        </section>
+
+        <!-- 24 -->
+				<section>
+          <div style="text-align:center">
+            <svg version="1.1" class="highcharts-root" style="font-family: Helvetica, Arial, sans-serif; font-size: 1rem;" xmlns="http://www.w3.org/2000/svg" width="727" height="300" viewBox="0 0 727 300" role="img" aria-label="Which form control gives you the most frustration?"><desc>Created with Highcharts 11.4.3</desc><defs><filter id="highcharts-drop-shadow-2"><feDropShadow dx="1" dy="1" flood-color="#000000" flood-opacity="0.75" stdDeviation="2.5"></feDropShadow></filter><clipPath id="highcharts-hvrwsnj-29-"><rect x="0" y="0" width="653" height="212" fill="none"></rect></clipPath></defs><rect fill="#ffffff" class="highcharts-background" filter="none" x="0" y="0" width="727" height="300" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="64" y="45" width="653" height="212" filter="none"></rect><g class="highcharts-grid highcharts-xaxis-grid" data-z-index="1"><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 129.5 45 L 129.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 194.5 45 L 194.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 259.5 45 L 259.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 325.5 45 L 325.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 390.5 45 L 390.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 455.5 45 L 455.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 521.5 45 L 521.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 586.5 45 L 586.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 651.5 45 L 651.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 717.5 45 L 717.5 257" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="0" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 64.5 45 L 64.5 257" opacity="1"></path></g><g class="highcharts-grid highcharts-yaxis-grid" data-z-index="1"><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 64 257.5 L 717 257.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 64 186.5 L 717 186.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 64 115.5 L 717 115.5" opacity="1"></path><path fill="none" stroke="#e6e6e6" stroke-width="1" stroke-dasharray="none" data-z-index="1" class="highcharts-grid-line" d="M 64 45.5 L 717 45.5" opacity="1"></path></g><rect fill="none" class="highcharts-plot-border" data-z-index="1" stroke="#cccccc" stroke-width="0" x="64" y="45" width="653" height="212"></rect><g class="highcharts-axis highcharts-xaxis" data-z-index="2"><path fill="none" class="highcharts-axis-line" stroke="#333333" stroke-width="1" data-z-index="7" d="M 64 257.5 L 717 257.5"></path></g><g class="highcharts-axis highcharts-yaxis" data-z-index="2"><text x="22.766666412353516" data-z-index="7" text-anchor="middle" transform="translate(0,0) rotate(270 22.766666412353516 151)" class="highcharts-axis-title" style="color: rgb(102, 102, 102); font-size: 0.8em; fill: rgb(102, 102, 102);" y="151">Percentage</text><path fill="none" class="highcharts-axis-line" stroke="#333333" stroke-width="0" data-z-index="7" d="M 64 45 L 64 257"></path></g><g class="highcharts-series-group" data-z-index="3" filter="none"><g class="highcharts-series highcharts-series-0 highcharts-column-series highcharts-tracker" data-z-index="0.1" opacity="1" transform="translate(64,45) scale(1 1)" clip-path="url(#highcharts-hvrwsnj-29-)"><path fill="#2caffe" d="M 20 61 L 46 61 A 3 3 0 0 1 49 64 L 49 212 A 0 0 0 0 1 49 212 L 17 212 A 0 0 0 0 1 17 212 L 17 64 A 3 3 0 0 1 20 61 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-0"></path><path fill="#544fc5" d="M 85 151 L 111 151 A 3 3 0 0 1 114 154 L 114 212 A 0 0 0 0 1 114 212 L 82 212 A 0 0 0 0 1 82 212 L 82 154 A 3 3 0 0 1 85 151 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-1"></path><path fill="#00e272" d="M 151 179 L 177 179 A 3 3 0 0 1 180 182 L 180 212 A 0 0 0 0 1 180 212 L 148 212 A 0 0 0 0 1 148 212 L 148 182 A 3 3 0 0 1 151 179 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-2"></path><path fill="#fe6a35" d="M 216 184 L 242 184 A 3 3 0 0 1 245 187 L 245 212 A 0 0 0 0 1 245 212 L 213 212 A 0 0 0 0 1 213 212 L 213 187 A 3 3 0 0 1 216 184 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-3"></path><path fill="#6b8abc" d="M 281 188 L 307 188 A 3 3 0 0 1 310 191 L 310 212 A 0 0 0 0 1 310 212 L 278 212 A 0 0 0 0 1 278 212 L 278 191 A 3 3 0 0 1 281 188 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-4"></path><path fill="#d568fb" d="M 346 198 L 372 198 A 3 3 0 0 1 375 201 L 375 212 A 0 0 0 0 1 375 212 L 343 212 A 0 0 0 0 1 343 212 L 343 201 A 3 3 0 0 1 346 198 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-5"></path><path fill="#2ee0ca" d="M 412 203 L 438 203 A 3 3 0 0 1 441 206 L 441 212 A 0 0 0 0 1 441 212 L 409 212 A 0 0 0 0 1 409 212 L 409 206 A 3 3 0 0 1 412 203 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-6"></path><path fill="#fa4b42" d="M 477 203 L 503 203 A 3 3 0 0 1 506 206 L 506 212 A 0 0 0 0 1 506 212 L 474 212 A 0 0 0 0 1 474 212 L 474 206 A 3 3 0 0 1 477 203 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-7"></path><path fill="#feb56a" d="M 542 207 L 568 207 A 3 3 0 0 1 571 210 L 571 212 A 0 0 0 0 1 571 212 L 539 212 A 0 0 0 0 1 539 212 L 539 210 A 3 3 0 0 1 542 207 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-8"></path><path fill="#91e8e1" d="M 608 207 L 634 207 A 3 3 0 0 1 637 210 L 637 212 A 0 0 0 0 1 637 212 L 605 212 A 0 0 0 0 1 605 212 L 605 210 A 3 3 0 0 1 608 207 Z" stroke="#ffffff" stroke-width="0" opacity="1" filter="none" class="highcharts-point highcharts-color-9"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-column-series" data-z-index="0.1" opacity="1" transform="translate(64,45) scale(1 1)" clip-path="none"></g></g><text x="364" text-anchor="middle" class="highcharts-title" data-z-index="4" style="font-size: 1.2em; color: rgb(51, 51, 51); font-weight: bold; fill: rgb(51, 51, 51);" y="25">Which form control gives you the most frustration?</text><text x="364" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color: rgb(102, 102, 102); font-size: 0.8em; fill: rgb(102, 102, 102);" y="44"></text><text x="10" text-anchor="start" class="highcharts-caption" data-z-index="4" style="color: rgb(102, 102, 102); font-size: 0.8em; fill: rgb(102, 102, 102);" y="297"></text><g class="highcharts-data-labels highcharts-series-0 highcharts-column-series highcharts-tracker" data-z-index="6" opacity="1" transform="translate(64,45) scale(1 1)"><g class="highcharts-label highcharts-data-label highcharts-data-label-color-0" data-z-index="1" filter="none" transform="translate(11,39)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round" style="">42.7%<tspan x="5" dy="0">​</tspan></tspan>42.7%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-1" data-z-index="1" filter="none" transform="translate(76,129)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">17.3%<tspan x="5" dy="0">​</tspan></tspan>17.3%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-2" data-z-index="1" filter="none" transform="translate(145,157)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round" style="">9.3%<tspan x="5" dy="0">​</tspan></tspan>9.3%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-3" data-z-index="1" filter="none" transform="translate(210,162)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">8.0%<tspan x="5" dy="0">​</tspan></tspan>8.0%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-4" data-z-index="1" filter="none" transform="translate(275,166)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">6.7%<tspan x="5" dy="0">​</tspan></tspan>6.7%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-5" data-z-index="1" filter="none" transform="translate(340,176)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">4.0%<tspan x="5" dy="0">​</tspan></tspan>4.0%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-6" data-z-index="1" filter="none" transform="translate(406,181)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">2.7%<tspan x="5" dy="0">​</tspan></tspan>2.7%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-7" data-z-index="1" filter="none" transform="translate(471,181)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">2.7%<tspan x="5" dy="0">​</tspan></tspan>2.7%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-8" data-z-index="1" filter="none" transform="translate(536,185)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">1.3%<tspan x="5" dy="0">​</tspan></tspan>1.3%</text></g><g class="highcharts-label highcharts-data-label highcharts-data-label-color-9" data-z-index="1" filter="none" transform="translate(602,185)"><text x="5" data-z-index="1" y="16" style="color: rgb(0, 0, 0); font-size: 0.7em; font-weight: bold; fill: rgb(0, 0, 0);"><tspan class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round">1.3%<tspan x="5" dy="0">​</tspan></tspan>1.3%</text></g></g><g class="highcharts-axis-labels highcharts-xaxis-labels" data-z-index="7"><text x="96.65" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">select</text><text x="161.95" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">date</text><text x="227.24999999999997" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">file</text><text x="292.55" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">checkbox</text><text x="357.85" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">radio</text><text x="423.15000000000003" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">range</text><text x="488.45000000000005" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">progress</text><text x="553.75" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">fieldset</text><text x="619.0500000000001" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">text</text><text x="684.35" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="middle" transform="translate(0,0)" y="284" opacity="1">number</text></g><g class="highcharts-axis-labels highcharts-yaxis-labels" data-z-index="7"><text x="49" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="end" transform="translate(0,0)" y="263" opacity="1">0</text><text x="49" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="end" transform="translate(0,0)" y="192" opacity="1">20</text><text x="49" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="end" transform="translate(0,0)" y="121" opacity="1">40</text><text x="49" style="color: rgb(51, 51, 51); cursor: default; font-size: 0.8em; fill: rgb(51, 51, 51);" text-anchor="end" transform="translate(0,0)" y="51" opacity="1">60</text></g><text x="697" class="highcharts-credits" text-anchor="end" data-z-index="8" style="cursor: pointer; color: rgb(153, 153, 153); font-size: 0.6em; fill: rgb(153, 153, 153);" y="295">Source: gwhitworth.com</text></svg>
+          </div>
+          <aside class="notes">
+            At the same time as improving the basics, Greg founded the Open-UI Community Group. An initiative to look
+            at how we can close the gap on components like we have done other technologies.
+            <br><br>
+            By far and away the largest source of frustration when developing form controls has been the select element.
+            So we asked ourselves: why are people rebuilding select? What are they trying to get from it? How can we
+            decompose select to its constituent parts so that there is less re-work across the industry.
+          </aside>
+        </section>
+
+        <!-- 25 -->
+				<section data-qr="https://k9l.io/ouimatrix">
+          <div style="text-align:center">
+            <img src="./ds-matrix.png">
+          </div>
+          <aside class="notes">
+            And so there's been a huge amount of research gathering information on all the components all of these
+            design systems are building, and cataloguing it, figuring out the missing pieces, and attempting to
+            add them back in.
+          </aside>
+        </section>
+
+        <!-- 26 -->
+				<section data-qr="https://k9l.io/ouiselect">
+          <div style="text-align:center">
+            <img src="./select-anatomy.png">
+          </div>
+          <aside class="notes">
+            The result is a journey of breaking down anatomy of a select and creating new capabilities so that it's
+            easier to customise the built-in select but also easier to create your own variants. We've been slowly
+            extending what's possible with select with small incremental changes, such as allowing hr in selects.
+          </aside>
+        </section>
+
+        <!-- 27 -->
+				<section data-qr="https://k9l.io/ouiselect">
+          <pre><code data-trim>
+            &lt;select style="appearance:base-select">
+              &lt;button>
+                &lt;selectedoption>&lt;/selectedoption>
+              &lt;button>
+              &lt;datalist>
+                &lt;option>&lt;img src="./one.png">&lt;/option>
+                &lt;option>&lt;img src="./two.png>&lt;/option>
+              &lt;/datalist>
+            &lt;/select>
+          </code></pre>
+          <aside class="notes">
+            And so we're working on a way where you can inject different pieces of HTML to replace bits of the
+            select element. Want a custom button? Stick a button tag inside a select. Want to customise the selected
+            option text? The new selectedoption element will act as that placeholder. Datalist will drive the custom
+            container, we're extending options to have images, systemtically addressing all of the pain points raised
+            by design systems and developers. And select is just the first, in this journey.
+          </aside>
+        </section>
+
+        <!-- 28 -->
+				<section data-qr="https://k9l.io/ouiselect">
+          <div style="text-align:center">
+            <img src="./selectlist-animation.gif">
+          </div>
+          <aside class="notes">
+            This should not require pulling in 30kb of JavaScript to make happen. At worst this should be a few hundred
+            lines of CSS and some additional markup.
+          </aside>
+        </section>
+
+        <!-- 29 -->
+				<section baseline="new" data-qr="https://k9l.io/mdnpopover">
+          <img src="./baseline-2024.png">
+          <pre><code data-trim>
+            &lt;button popovertarget="my-popover">
+              Open Popover
+            &lt;button>
+            &lt;div id="my-popover" popover>
+              &lt;p>I'm a popover&lt;/p>
+            &lt;/div>
+          </code></pre>
+          <aside class="notes">
+            But it's not just about extending what's there, it's also about providing the base primitives to allow for
+            rolling your own versions easier. Popover allows you to create floating UI which sits above all content on
+            the page on something called the top-layer, and is immune to overflow, positioning, or z-index issues that
+            is common when creating this kind of UI. It eliminates the need for globs of JavaScript, even the opener
+            buttons are declarative, meaning you get accessibility for free too!
+            <br><br>
+            If you've ever used something like React Portals; you can stop, popover solves this problem. RIP React
+            Portals we hardly knew ye.
+            <br><br>
+            And this isn't just contrived code, this works today - this markup is accessible! No aria-details needed,
+            no focus management, it does it all for you!
+          </aside>
+        </section>
+
+        <!-- 30 -->
+				<section baseline="new" data-qr="https://k9l.io/mdnpopover">
+          <video data-autoplay loop src="./github-popover.mov"></video>
+          <aside class="notes">
+            This is usable today. In fact you've probably used it without knowing it; we've been migrating all of the
+            floating UI at GitHub to using popovers and dialogs and it's literally making 1000s of lines of code
+            redundant.
+          </aside>
+        </section>
+
+        <!-- 32 -->
+				<section data-qr="https://k9l.io/globaldesign">
+          <div style="text-align:center">
+            <img src="./global-design-system.png">
+          </div>
+          <aside class="notes">
+            While OpenUI is looking at these low level pieces, we're also exploring the high level. Some of you may have
+            read Brad Frost's piece on a Global Design system, one that captures some of this need to provide bigger
+            building blocks and a more cohesive system atop HTML. OpenUI has commited to exploring this further, we want
+            to evolve this space and work towards tighter integration loops to feed work back into browsers.
+            <br><br>
+            OpenUI is an open community! So come join in! We welcome your participation.
+          </aside>
+        </section>
+
+        <!-- 33 -->
+				<section data-auto-animate>
+          <h4 class="fragment fade-in">State Management with Observable/Signal</h4>
+          <h4 class="fragment fade-in">Real templating &amp; data binding with DOM parts</h4>
+          <h4 class="fragment fade-in">A built in view layer with Custom Elements</h4>
+          <h4 class="fragment fade-in">SPA style navigations with View Transitions</h4>
+          <h4 class="fragment fade-in">Extensible built-in form controls coming soon</h4>
+          <h4 class="fragment fade-in">Built in layering of UI with popovers and dialogs</h4>
+          <h4 class="fragment fade-in">Solving for high level problems at the design system level</h4>
+          <aside class="notes">
+            So let's send it home, all of these new web platform advancements happening in the 2020s:
+            <br><br>
+            We're on the road to state management with observables and signals.
+            <br><br>
+            A real shot at templates and data binding landing in the web.
+            <br><br>
+            Custom Elements; a built in component paradigm growing more complete by the day, more on that
+            in my Web Directions Code talk.
+            <br><br>
+            CSS is now as expressive as SASS, and more powerful, with things like view transitions.
+            <br><br>
+            More extensible form controls, customisable select!
+            <br><br>
+            Popovers and dialogs solving modern UI challenges.
+            <br><br>
+            And investing into high level problems to enable teams to move faster.
+            <br><br>
+          </aside>
+        </section>
+
+        <!-- 34 -->
+				<section data-qr="https://k9l.io/lemons">
+          <div style="text-align:center">
+            <img src="./market-for-lemons.png">
+          </div>
+          <aside class="notes">
+            Alex Russel has a seminal article, The Market for Lemons, in which he lambasts the 2010s as "the lost
+            decade" for the web. I think the article gets a lot right, and it's well worth a read but I'm slightly
+            more optimistic about where the decade has lead us.
+          </aside>
+        </section>
+
+        <!-- 35 -->
+				<section>
+          <div>
+            <ol style="list-style:none">
+              <li><h2>1990s: Documents</h2></li>
+              <li><h2>2000s: Applications</h2></li>
+              <li><h2>2010s: Frameworks</h2></li>
+              <li><h2>2020s: <span class="fragment fade-in">Realignment</span></h2></li>
+              <li><h2>2030s: <span class="fragment fade-in">Renaissance</span></h2></li>
+            </ol>
+          </div>
+          <aside class="notes">
+            So for me, I look at the work that has been done and will be done, and I see a bit of a renaissance on
+            the web platform. I think while 2010s were a period of discovery and a huge growth period for frameworks,
+            I see the coming decades as a return to form.
+            <br><br>
+            I see the 2020s as something of a re-alignment to the platform. I think we'll see a decline of framework
+            moats, meanwhile the web platform will encompass more of the value add that current frameworks provide.
+            <br><br>
+            And I think as we close out the decade and all of these technologies are enshrined into the platform and
+            widely available, into the 2030s we might see a jQuery moment for frameworks; they'll likely continue to
+            innovate but I think there will be less compelling reason to bring in all the client side JS and the Web
+            Platform will be seen more as the framework that it is. Perhaps in response we'll see more of a shift to
+            the server for these things, and that's maybe another talk brewing...
+          </aside>
+        </section>
+
+        <!-- 36 -->
+				<section data-qr="https://open-ui.org">
+          <h1>Always bet on the web</h1>
+          <aside class="notes">
+            Ok so how can you act on this? What are the real next steps? Set your teams up for success by measuring
+            the cost of your platform, finding the hidden externalised costs, costs of goods sold and the scalability
+            challenges. Having a serious conversation about this can help your team scale to the next zero.
+            <br><br>
+            But there's readily available pieces for you to poise yourself ready for the next decades, tech like
+            popovers and view transitions reduce the gap between the value a frameworks provide. Signals and Observables
+            can be prospectively adopted with polyfills... but you can use your voice and lobby for this work to continue!
+            Advocate for this change. If you're an IC or TPM, join us at open-ui.org. This work cannot continue without
+            tight feedback loops with industry partners.
+            <br><br> 
+            Let's continue having this conversation of where to take the web. It's our platform, we're all stakeholders
+            and we can expect more from it. Change might be slow but careers can be long.
+          </aside>
+        </section>
+
+        <!-- 37 -->
+        <section data-qr="https://k9l.io/wd24l">
+          <h1>Thank you</h1>
+        </section>
 
 			</div>
 		</div>
