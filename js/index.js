@@ -1,3 +1,6 @@
+import qr from 'its-a-qrcode'
+customElements.define('qr-code', qr);
+
 import Deck, { VERSION } from './reveal.js'
 
 /**
@@ -35,7 +38,10 @@ Reveal.initialize = options => {
 	// Invoke any enqueued API calls
 	enqueuedAPICalls.map( method => method( Reveal ) );
 
-	return Reveal.initialize();
+	return Reveal.initialize({
+    transition: 'none',
+    controls: false,
+  });
 
 }
 
@@ -54,5 +60,20 @@ Reveal.initialize = options => {
 Reveal.isReady = () => false;
 
 Reveal.VERSION = VERSION;
+
+Reveal.on('slidechanged', event => {
+  let qr = event.currentSlide.dataset.qr
+  let el = document.querySelector('qr-code')
+  let span = el.parentElement.querySelector('span')
+  if (qr) {
+    el.hidden = false
+    el.textContent = qr
+    el.parentElement.href = qr
+    span.textContent = qr.replace(/^https?:\/\//, '')
+  } else {
+    el.hidden = true
+    span.textContent = ''
+  }
+})
 
 export default Reveal;

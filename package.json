@@ -100,5 +100,8 @@
       "no-eq-null": 2,
       "no-unused-expressions": 0
     }
+  },
+  "dependencies": {
+    "its-a-qrcode": "^0.4.0"
   }
 }
